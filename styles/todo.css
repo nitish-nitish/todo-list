@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #e0f7fa, #f0f4c3);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 40px 20px;
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.input-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.input-container input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+.input-container input[type="text"]:focus {
+  border-color: #3da33d;
+  outline: none;
+}
+
+.input-container input[type="button"] {
+  background-color: #3da33d;
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.input-container input[type="button"]:hover {
+  background-color: #60b160;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  background-color: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 16px;
+  margin-bottom: 14px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+ul li:hover {
+  transform: scale(1.01);
+  background-color: #f4fdf7;
+}
+
+ul li .task-text {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 2px;
+}
+
+ul li .actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.btn {
+  border: none;
+  background: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.editBtn {
+  color: #007b00;
+}
+
+.deleteBtn {
+  color: #d80000;
+}
+
+.editBtn:hover {
+  background-color: #e0ffe0;
+}
+
+.deleteBtn:hover {
+  background-color: #ffe0e0;
+}
+
+#logout {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff5555;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#logout:hover {
+  background-color: #ff1f1f;
+}
+
+.datetime {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+

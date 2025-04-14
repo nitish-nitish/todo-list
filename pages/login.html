@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sign In</title>
+   <link rel="stylesheet" href="../styles/login.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+   <div class="container">
+      <div class="form-box">
+         <h1 class="title">Sign In</h1>
+         <div class="underline"></div>
+         <form>
+            <div class="input-group">
+               <div class="input-field">
+                  <i class="fa-solid fa-at"></i>
+                  <input type="email" placeholder="Email" id="email">
+               </div>
+               <div class="error-msg" id="email-error"></div>
+            </div>
+            
+            <div class="input-group">
+               <div class="input-field">
+                  <i class="fa-solid fa-key"></i>
+                  <input type="password" placeholder="Password" id="password">
+               </div>
+               <div class="error-msg" id="password-error"></div>
+            </div>
+            
+
+            <p>Don't have an account? <a href="/pages/signup.html" onclick="route(event)">Register</a></p>
+
+            <div class="btn-field">
+               <button type="button" id="submit" class="signupbtn" disabled >Login</button>
+            </div>
+         </form>
+      </div>
+   </div>
+
+   <script src="../scripts/login.js" type="module"></script>
+</body>
+</html>

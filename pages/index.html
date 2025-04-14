@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/styles/todo.css" />
+  <title>To Do List - Firebase App</title>
+</head>
+<body>
+  <div class="container">
+    <div class="input-container">
+      <h1>My To Do List</h1>
+      <div class="datetime" id="datetimeDisplay"></div>
+      <input type="text" placeholder="Add a new to do..." id="inputBox" />
+      <input type="text" placeholder="Add a description..." id="descriptionBox" />
+      <input type="button" value="Add" id="addBtn" />
+    </div>
+
+    <ul class="todoList" id="todoList">
+      <!-- Todos will be added here -->
+    </ul>
+
+    <button id="logout">Logout</button>
+  </div>
+
+  <script type="module" src="/scripts/todo.js"></script>
+</body>
+</html>
