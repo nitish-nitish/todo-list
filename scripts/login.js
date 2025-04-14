@@ -1,7 +1,7 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { appId, apiKey, measurementId, messagingSenderId } from "../env";
+import { appId, apiKey, measurementId, messagingSenderId } from "../env.js";
 const uid = localStorage.getItem("uid");
 
 if (uid) {

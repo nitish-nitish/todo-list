@@ -16,7 +16,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-import { appId, apiKey, measurementId, messagingSenderId } from "../env";
+import { appId, apiKey, measurementId, messagingSenderId } from "../env.js";
 
 
 const firebaseConfig = {
