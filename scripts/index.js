@@ -23,6 +23,7 @@ function route(event) {
 const routes = {
     404: "/pages/404.html",
     "/": "/pages/index.html",
+    "/list": "/pages/list.html",
     "/login": "/pages/login.html",
     "/signup": "/pages/signup.html"
 }

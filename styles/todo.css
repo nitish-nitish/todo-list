@@ -136,6 +136,9 @@ ul li .actions {
   background-color: #ffe0e0;
 }
 
+#listbtn,
+#deleteAll,
+#backbtn,
 #logout {
   margin-top: 20px;
   padding: 10px 20px;
@@ -148,8 +151,18 @@ ul li .actions {
   transition: background-color 0.3s;
 }
 
+
+#deleteAll:hover,
 #logout:hover {
   background-color: #ff1f1f;
+}
+
+#listbtn, #backbtn{
+  background-color: #007bff;
+}
+
+#listbtn:hover, #backbtn:hover{
+  background-color: #3a99ff;
 }
 
 .datetime {
@@ -159,3 +172,27 @@ ul li .actions {
   font-weight: 600;
 }
 
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+  gap: 10px;
+}
+
+.tab-btn {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.tab-btn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+#deleteAll {
+  background-color: #ff2d2d;
+}
