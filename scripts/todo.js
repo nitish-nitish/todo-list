@@ -53,6 +53,13 @@ const toDateTimeString = (timestamp) => {
   return "Invalid date";
 };
 
+if (listBtn) {
+  listBtn.addEventListener("click", () => {
+    window.location.href = "list.html";
+  });
+
+}
+
 const createTodoElement = (text, id, description = "", createdAt = null, completedAt = null) => {
   const li = document.createElement("li");
   li.setAttribute("data-id", id);
@@ -127,12 +134,11 @@ const addTodo = async () => {
     editTodoId = null;
   } else {
     try {
-      const now = new Date();
       const docRef = await addDoc(collection(db, "todos"), {
         task: inputText,
         description: descriptionText,
         uid: currentUser.uid,
-        createdAt: now,
+        createdAt: new Date(),
         completedAt: null,
       });
       createTodoElement(inputText, docRef.id, descriptionText, now, null);
@@ -142,6 +148,8 @@ const addTodo = async () => {
       console.error("Error adding document: ", e);
     }
   }
+  window.location.href = "list.html";
+
 };
 
 const getUserTodos = async (filter = "all") => {
@@ -149,8 +157,10 @@ const getUserTodos = async (filter = "all") => {
   try {
     const q = query(
       collection(db, "todos"),
-      where("uid", "==", currentUser.uid)
+      where("uid", "==", currentUser.uid),
+      orderBy("createdAt", "desc")
     );
+
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((docSnap) => {
       const data = docSnap.data();
@@ -175,6 +185,7 @@ const getUserTodos = async (filter = "all") => {
     console.error("Error fetching todos:", error);
   }
 };
+
 
 const deleteAllTodos = async () => {
   if (!currentUser) return;
@@ -201,17 +212,12 @@ const deleteAllTodos = async () => {
   }
 };
 
-deleteAll.addEventListener("click", () => {
-  if (confirm("Are you sure you want to delete all your todos?")) {
-    deleteAllTodos();
-  }
-});
-
-if (listBtn) {
-  listBtn.addEventListener("click", () => {
-    window.location.href = "list.html";
+if (deleteAll) {
+  deleteAll.addEventListener("click", () => {
+    if (confirm("Are you sure you want to delete all your todos?")) {
+      deleteAllTodos();
+    }
   });
-
 }
 
 if (backBtn) {
@@ -220,21 +226,23 @@ if (backBtn) {
   });
 
 }
+if (document.getElementById("allTab")) {
+  document.getElementById("allTab").addEventListener("click", () => {
+    setActiveTab("allTab");
+    getUserTodos("all");
+  });
+  
+  document.getElementById("completedTab").addEventListener("click", () => {
+    setActiveTab("completedTab");
+    getUserTodos("completed");
+  });
+  
+  document.getElementById("pendingTab").addEventListener("click", () => {
+    setActiveTab("pendingTab");
+    getUserTodos("pending");
+  });
+}
 
-document.getElementById("allTab").addEventListener("click", () => {
-  setActiveTab("allTab");
-  getUserTodos("all");
-});
-
-document.getElementById("completedTab").addEventListener("click", () => {
-  setActiveTab("completedTab");
-  getUserTodos("completed");
-});
-
-document.getElementById("pendingTab").addEventListener("click", () => {
-  setActiveTab("pendingTab");
-  getUserTodos("pending");
-});
 
 const setActiveTab = (id) => {
   document.querySelectorAll(".tab-btn").forEach((btn) =>
@@ -265,13 +273,13 @@ const handleTodoActions = async (e) => {
   if (e.target.classList.contains("editBtn")) {
     const taskText = li.querySelector(".task-text").innerText;
     const taskDesc = li.querySelector(".description").innerText;
-
-    inputBox.value = taskText;
-    descriptionBox.value = taskDesc;
-    inputBox.focus();
-    addBtn.value = "Edit";
-    editTodo = e;
-    editTodoId = todoId;
+  
+    // Save to localStorage before redirecting
+    localStorage.setItem("editTodoId", todoId);
+    localStorage.setItem("editTodoTask", taskText);
+    localStorage.setItem("editTodoDesc", taskDesc);
+  
+    window.location.href = "index.html";
   }
 };
 
@@ -286,6 +294,13 @@ onAuthStateChanged(auth, (user) => {
 
 if (addBtn) {
   addBtn.addEventListener("click", addTodo);
+  [inputBox, descriptionBox].forEach(input => {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        addTodo();
+      }
+    });
+  });
 }
 todoList.addEventListener("click", handleTodoActions);
 document.getElementById("logout").addEventListener("click", () => {
@@ -303,3 +318,21 @@ const updateDateTime = () => {
 };
 setInterval(updateDateTime, 1000);
 updateDateTime();
+
+window.addEventListener("DOMContentLoaded", () => {
+  const editId = localStorage.getItem("editTodoId");
+  if (editId) {
+    const task = localStorage.getItem("editTodoTask");
+    const desc = localStorage.getItem("editTodoDesc");
+
+    inputBox.value = task;
+    descriptionBox.value = desc;
+    addBtn.value = "Edit";
+    editTodoId = editId;
+
+    // Optionally clear localStorage values after use if you don't want to persist them
+    localStorage.removeItem("editTodoId");
+    localStorage.removeItem("editTodoTask");
+    localStorage.removeItem("editTodoDesc");
+  }
+});

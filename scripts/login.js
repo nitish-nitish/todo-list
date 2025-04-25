@@ -56,6 +56,31 @@ function validateForm() {
 
 emailInput.addEventListener("input", validateForm);
 passwordInput.addEventListener("input", validateForm);
+passwordInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !submitBtn.disabled) {
+    submitBtn.click();
+  }
+});
+
+const modal = document.getElementById("error-modal");
+const modalMessage = document.getElementById("modal-message");
+const closeBtn = document.querySelector(".close-btn");
+
+function showModal(message) {
+  modalMessage.textContent = message;
+  modal.style.display = "block";
+}
+
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+}
+
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
@@ -67,11 +92,11 @@ submitBtn.addEventListener("click", (event) => {
     .then((userCredential) => {
       const user = userCredential.user;
       localStorage.setItem("uid", user.uid);
-      alert("Logged in");
       window.location.href = "index.html";
     })
     .catch((error) => {
-      alert(error.message);
+      showModal("Incorrect email password combination.");
+      
     });
 });
 

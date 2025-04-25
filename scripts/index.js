@@ -28,6 +28,9 @@ const routes = {
     "/signup": "/pages/signup.html"
 }
 
+
+  
+
 async function handleLocation() {
     const path = window.location.pathname;
     const route = routes[path] || routes[404];

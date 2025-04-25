@@ -56,6 +56,11 @@ function validateForm() {
 
 emailInput.addEventListener("input", validateForm);
 passwordInput.addEventListener("input", validateForm);
+passwordInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !submitBtn.disabled) {
+    submitBtn.click();
+  }
+});
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();

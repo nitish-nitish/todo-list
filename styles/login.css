@@ -12,7 +12,7 @@ body {
 .container {
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('image.jpg');
+    background: linear-gradient(135deg, #e0f7fa, #f0f4c3);
     background-position: center;
     background-size: cover;
     display: flex;
@@ -49,7 +49,6 @@ body {
     margin-bottom: 40px; 
 }
 
-
 .input-field {
     background: #f1f3f4;
     margin: 15px 0;
@@ -57,7 +56,9 @@ body {
     display: flex;
     align-items: center;
     transition: 0.3s;
-}
+    width: 100%; 
+    overflow: hidden; /* Prevent content from spilling */
+  }  
 
 .input-field i {
     color: #444;
@@ -67,13 +68,16 @@ body {
 
 .input-field input {
     flex: 1;
+    min-width: 0; /* Ensures it shrinks properly */
     font-size: 15px;
     padding: 12px 15px;
     border: none;
     background-color: transparent;
     outline: none;
     color: #333;
-}
+    padding-right: 20px;
+  }
+  
 
 form p {
     text-align: left;
@@ -141,3 +145,140 @@ button:disabled:hover {
 .error-msg.active {
     opacity: 1;
 }
+
+@media (max-width: 768px) {
+    .form-box {
+      padding: 40px 30px;
+    }
+  
+    .form-box h1 {
+      font-size: 28px;
+    }
+  
+    .input-field input {
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+  
+    .btn-field button {
+      font-size: 15px;
+      height: 42px;
+    }
+  }
+    
+  .modal-content {
+    background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    top: -200px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    animation: slideDown 0.4s ease;
+  }
+  
+  @media (max-width: 480px) {
+    .form-box {
+      padding: 30px 20px;
+      max-width: 400px;
+      overflow: hidden;
+    }
+  
+    .form-box h1 {
+      font-size: 24px;
+    }
+  
+    .input-field input {
+      padding: 10px;
+    }
+  
+    .btn-field button {
+      font-size: 14px;
+      height: 40px;
+    }
+  
+    .error-msg {
+      font-size: 11px;
+    }
+
+    .modal-content {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 16px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+      top: -20px;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      animation: slideDown 0.4s ease;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      background: linear-gradient(135deg, #e0f7fa, #f0f4c3);
+
+    }
+  }
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+  }
+
+  
+  .modal-content p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #aaa;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .close-btn:hover,
+  .close-btn:focus {
+    color: #333;
+    transform: scale(1.1);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
